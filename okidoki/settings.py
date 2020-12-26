@@ -16,6 +16,8 @@ from pathlib import Path
 import json
 import datetime
 import dj_database_url
+
+
 #BASE_DIR = Path(__file__).ancestor(2)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -85,6 +87,7 @@ MIDDLEWARE = [
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
+    'https://okifrontend.web.app/'
 )
 
 ROOT_URLCONF = 'okidoki.urls'

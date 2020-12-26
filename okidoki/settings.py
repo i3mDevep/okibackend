@@ -10,13 +10,19 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 from django.core.exceptions import ImproperlyConfigured
-
+from django.conf import settings
+import os
 from pathlib import Path
 import json
 import datetime
 
 #BASE_DIR = Path(__file__).ancestor(2)
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# All settings common to all environments
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 with open("./secret.json") as f:
     secret = json.loads(f.read())
@@ -159,7 +165,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
 
 
 REST_FRAMEWORK = {

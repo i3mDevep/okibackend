@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models.signals import pre_delete
+from django.db.models.signals import post_save
 from .signals import update_stok_product
 from model_utils.models import TimeStampedModel
 from applications.product.models import Product
@@ -77,4 +77,4 @@ class SaleDetail(TimeStampedModel):
     def __str__(self):
         return str(self.product.name) + '-' + str(self.sale.id)
 
-pre_delete.connect(update_stok_product, sender=CarShop)
+post_save.connect(update_stok_product, sender=SaleDetail)

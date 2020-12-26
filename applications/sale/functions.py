@@ -20,16 +20,25 @@ def confirm_sale(self, params):
         total_product_sale=  total_price_sale['count_in_product']
     )
 
-    instace = [
-        SaleDetail(
+    # instace = [
+    #    SaleDetail(
+    #         product= product_car.product,
+    #         sale= sale_global,
+    #         count= product_car.count
+    #     ).objects.create()
+    #     for product_car in products_car
+    # ]
+
+    #SaleDetail.objects.bulk_create(instace)
+    instace = []
+    for product_car in products_car:
+        detail = SaleDetail(
             product= product_car.product,
             sale= sale_global,
             count= product_car.count
         )
-        for product_car in products_car
-    ]
-
-    SaleDetail.objects.bulk_create(instace)
+        detail.save()
+        instace.append(detail)
 
     CarShop.objects.all().delete()
 

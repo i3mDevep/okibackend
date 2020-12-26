@@ -29,7 +29,7 @@ class Provider(TimeStampedModel):
         blank=True,
     )
     web = models.URLField(
-        'page_url',
+        'web',
         blank=True,
     )
 

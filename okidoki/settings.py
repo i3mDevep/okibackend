@@ -15,7 +15,7 @@ import os
 from pathlib import Path
 import json
 import datetime
-
+import dj_database_url
 #BASE_DIR = Path(__file__).ancestor(2)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -117,17 +117,24 @@ WSGI_APPLICATION = 'okidoki.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': get_secret('DB_NAME'),
-        'USER': get_secret('USER'),
-        'PASSWORD': get_secret('PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '5433',
+
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': get_secret('DB_NAME'),
+#         'USER': get_secret('USER'),
+#         'PASSWORD': get_secret('PASSWORD'),
+#         'HOST': 'localhost',
+#         'PORT': '5433',
+#     }
+# }
+DATABASES['default'] = dj_database_url.parse('postgres://ajaguwjwwneecz:3ba6b76de64c38e0cf79f1b1843f1c4bece44ef259f7885f982997e075600cbf@ec2-34-202-65-210.compute-1.amazonaws.com:5432/d9idf393u080ap', conn_max_age=600)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

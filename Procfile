@@ -1,1 +1,1 @@
-web: gunicorn okidoki.app
+web: gunicorn gettingstarted.wsgi --log-file -

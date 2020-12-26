@@ -18,7 +18,7 @@ import datetime
 #BASE_DIR = Path(__file__).ancestor(2)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-with open("../secret.json") as f:
+with open("./secret.json") as f:
     secret = json.loads(f.read())
 
 def get_secret(secret_name, secrets=secret):

@@ -3,7 +3,7 @@ from django.db.models.signals import post_save
 from .signals import update_stok_product
 from model_utils.models import TimeStampedModel
 from applications.product.models import Product
-from .managers import CarShopManager
+from .managers import CarShopManager, SalesGlobalManager
 
 class CarShop(TimeStampedModel):
 
@@ -50,11 +50,20 @@ class SaleGlobal(TimeStampedModel):
         decimal_places=2
     )
 
+    total_util_sale = models.DecimalField(
+        'sale_util_total', 
+        max_digits=15, 
+        decimal_places=2
+        # default = 0
+    )
+
     total_product_sale = models.DecimalField(
         'total_product_sale', 
         max_digits=15, 
-        decimal_places=2,
+        decimal_places=0,
     )
+
+    objects = SalesGlobalManager()
 
     def __str__(self):
         return str(self.id) + '-' + str(self.date_sale) + '-' + str(self.total_price_sale)

@@ -28,7 +28,8 @@ def cardShop_list(request):
         return JsonResponse({ 
             "products" : cardShop_serializer.data, 
             "total_sale_price" : totalSale['total_sale_price'] or 0,
-            "total_sale_products": totalSale['count_in_product'] or 0
+            "total_sale_products": totalSale['count_in_product'] or 0,
+            "total_sale_util": totalSale['total_sale_util'] or 0
              },
             safe=False)
         
@@ -88,7 +89,17 @@ def global_sale(request):
 @permission_classes([IsAuthenticated])
 def sale_global_list(request):
     
-    sales = SaleGlobal.objects.all()
+    order = request.GET.get('order', '')
+
+    type_payment = request.GET.get('type_payment', None)
+    
+    search = request.GET.get('search', None)
+
+    custome_filter = {
+        'type_payment': type_payment,
+    }
+
+    sales = SaleGlobal.objects.all_sale_global(order, search, **custome_filter)
 
     paginator = PageNumberPagination()
     paginator.page_size = 10
@@ -96,6 +107,24 @@ def sale_global_list(request):
     serializer = SaleGlobalSerializer(result_page, many=True)
 
     return paginator.get_paginated_response(serializer.data)
+
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def sale_global_report(request):
+    
+    # sales = SaleGlobal.objects.sale_today()
+    # pdetail_sale = SaleGlobalSerializer(sales[1], many=True)
+
+
+    # return JsonResponse({ "sales": pdetail_sale.data, **sales[0] }, safe=False)
+    sales = SaleGlobal.objects.sales_history_week()
+    print(sales)
+
+    return JsonResponse({ **sales }, safe=False)
+
+
 
 
 @api_view(['GET'])

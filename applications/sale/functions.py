@@ -17,7 +17,8 @@ def confirm_sale(self, params):
     sale_global = self.create(
         type_payment= type_payment,
         total_price_sale= total_price_sale['total_sale_price'],
-        total_product_sale=  total_price_sale['count_in_product']
+        total_product_sale=  total_price_sale['count_in_product'],
+        total_util_sale=  total_price_sale['total_sale_util']
     )
 
     # instace = [

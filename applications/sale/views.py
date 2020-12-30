@@ -112,19 +112,21 @@ def sale_global_list(request):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def sale_global_report(request):
+def sale_global_report_today(request):
     
-    # sales = SaleGlobal.objects.sale_today()
-    # pdetail_sale = SaleGlobalSerializer(sales[1], many=True)
+    sales = SaleGlobal.objects.sale_today()
+    pdetail_sale = SaleGlobalSerializer(sales[1], many=True)
 
 
-    # return JsonResponse({ "sales": pdetail_sale.data, **sales[0] }, safe=False)
+    return JsonResponse({ "sales": pdetail_sale.data, **sales[0] }, safe=False)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def sale_global_report_week(request):
+    
     sales = SaleGlobal.objects.sales_history_week()
-    print(sales)
 
-    return JsonResponse({ **sales }, safe=False)
-
-
+    return JsonResponse({ "results": list(sales) }, safe=False)
 
 
 @api_view(['GET'])

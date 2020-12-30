@@ -8,6 +8,7 @@ urlpatterns = [
     path('car-shops/<pk>', views.cardShop_detail),
     path('sale-global/confirm/', views.global_sale),
     path('sale-global/list/', views.sale_global_list),
-    path('sale-global/report/', views.sale_global_report),
+    path('sale-global/report-today/', views.sale_global_report_today),
+    path('sale-global/report-week/', views.sale_global_report_week),
     path('sale-global/list/<pk>', views.sale_global_detail),
 ]

@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.db.models import Q, Sum, Count, F, FloatField, PositiveIntegerField, ExpressionWrapper
 from applications.product.models import Product
-from django.db.models.functions import TruncMonth
+from django.db.models.functions import TruncDay
 
 class SalesGlobalManager(models.Manager):
 
@@ -11,7 +11,12 @@ class SalesGlobalManager(models.Manager):
         return super().filter(*args, **updated_kwargs)
 
     def sales_history_week(self):
-        return self.annotate(month=TruncMonth('date_sale')).values('day').annotate(c=Count('id'))                 
+        return self.annotate(
+            day=TruncDay('date_sale')
+            ).values('day').annotate(
+                total_price_sale=Sum('total_price_sale'),
+                total_utils_sale=Sum('total_util_sale')
+                ).order_by('-day')[0:7]         
     
 
     def sale_today(self):

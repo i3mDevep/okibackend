@@ -3,6 +3,7 @@
 import os
 import sys
 
+#virtualenv nombre_de_tu_entorno -p python3
 
 def main():
     """Run administrative tasks."""

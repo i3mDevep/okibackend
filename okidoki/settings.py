@@ -59,6 +59,7 @@ DJANGO_APPS = (
 LOCAL_APPS = (
     'applications.product',
     'applications.sale',
+    'applications.okimetabase'
 )
 
 THIRD_PARTY_APPS = (

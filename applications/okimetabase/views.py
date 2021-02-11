@@ -19,6 +19,6 @@ def index(request):
     }
     token = jwt.encode(payload, METABASE_SECRET_KEY, algorithm="HS256")
 
-    iframeUrl = METABASE_SITE_URL + "/embed/dashboard/" + token + "#bordered=true&titled=true"
+    iframeUrl = METABASE_SITE_URL + "/embed/dashboard/" +  token.decode("utf8")  + "#bordered=true&titled=true"
 
     return JsonResponse({'urlFrame': iframeUrl })

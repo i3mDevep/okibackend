@@ -138,7 +138,7 @@ DATABASES = {
 #         'PORT': '5433',
 #     }
 # }
-DATABASES['default'] = dj_database_url.parse('postgres://ajaguwjwwneecz:3ba6b76de64c38e0cf79f1b1843f1c4bece44ef259f7885f982997e075600cbf@ec2-34-202-65-210.compute-1.amazonaws.com:5432/d9idf393u080ap', conn_max_age=600)
+DATABASES['default'] = dj_database_url.parse('postgres://wccoflvmklxcdp:309a54ae58b83e671723b8709389c0af84088489b3ec6869f7a9634ea0117ebf@ec2-52-5-229-243.compute-1.amazonaws.com:5432/d94clsij9rpbuo', conn_max_age=600)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

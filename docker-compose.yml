@@ -1,24 +1,41 @@
 version: '3.5'
 
 services:
-  postgres:
-    container_name: postgres_container
-    image: postgres
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
-      PGDATA: /data/postgres
+  web:
+    build:
+      context: .
+      dockerfile: ./Docker/api.Dockerfile
+
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
-       - postgres:/data/postgres
+      - ./simphony/:/usr/src/simphony/
+    stdin_open: true 
+    tty: true  
+    env_file: 
+      - .env
     ports:
-      - "5433:5432"
-    networks:
+      - 8005:8000
+    depends_on:
       - postgres
-    restart: unless-stopped
+
+  postgres:
+    build:
+      context: ./Docker
+      dockerfile: db.Dockerfile
+    environment:
+      TZ: "America/Bogota"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - 5436:5432
+    environment:
+      - POSTGRES_USER=okidoki
+      - POSTGRES_PASSWORD=okidoki
+      - POSTGRES_DB=okidoki
   
 networks:
   postgres:
     driver: bridge
 
 volumes:
-    postgres:
+    postgres_data:

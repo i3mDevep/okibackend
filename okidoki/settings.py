@@ -12,32 +12,32 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from django.core.exceptions import ImproperlyConfigured
 
 from pathlib import Path
+
+import environ
 import json
 import datetime
+
 
 #BASE_DIR = Path(__file__).ancestor(2)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-with open("../secret.json") as f:
-    secret = json.loads(f.read())
+print("este es root dir")
+print(BASE_DIR)
 
-def get_secret(secret_name, secrets=secret):
-    try:
-        return secrets[secret_name]
-    except:
-        msg = "la variable %s no existe" % secret_name
-        raise ImproperlyConfigured(msg)
+env = environ.Env()
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_secret('SECRET_KEY')
+SECRET_KEY = env('DJANGO_SECRET_KEY', default='PB3aGvTmCkzaLGRAxDc3aMayKTPTDd5usT8gw4pCmKOk5AlJjh12pTrnNgQyOHCH')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+
 
 
 # Application definition
@@ -112,15 +112,20 @@ WSGI_APPLICATION = 'okidoki.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': get_secret('DB_NAME'),
+#         'USER': get_secret('USER'),
+#         'PASSWORD': get_secret('PASSWORD'),
+#         'HOST': 'localhost',
+#         'PORT': '5433',
+#     }
+# }
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': get_secret('DB_NAME'),
-        'USER': get_secret('USER'),
-        'PASSWORD': get_secret('PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '5433',
-    }
+    'default': env.db()
 }
 
 # Password validation

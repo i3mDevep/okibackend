@@ -1,0 +1,4 @@
+CREATE USER okidoki;
+
+CREATE DATABASE okidoki;
+GRANT ALL PRIVILEGES ON DATABASE okidoki TO okidoki;

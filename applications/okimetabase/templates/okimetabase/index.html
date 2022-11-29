@@ -1,0 +1,12 @@
+{% if iframeUrl %}
+    <h1>{{  iframeUrl }}</h1><iframe
+    src="https://stackoverflow.com/questions/46080433/why-cant-django-sites-be-embedded-inside-another-htmliframe"
+    frameborder="0"
+    width="800"
+    height="600"
+    allowtransparency
+></iframe>
+    <ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}

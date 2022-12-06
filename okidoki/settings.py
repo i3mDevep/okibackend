@@ -14,14 +14,13 @@ from pathlib import Path
 import environ
 import json
 import datetime
-import dj_database_url
 
 
 
 #BASE_DIR = Path(__file__).ancestor(2)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-print("este es root dir")
+print("este es root dir 2")
 print(BASE_DIR)
 
 env = environ.Env()
@@ -39,7 +38,6 @@ DEBUG = True
 TIME_ZONE = 'America/Bogota'
 
 ALLOWED_HOSTS = ['*']
-
 
 
 # Application definition
@@ -79,12 +77,10 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = False
 
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',
-    'https://okifrontend.web.app',
-)
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = False
 
 ROOT_URLCONF = 'okidoki.urls'
 
@@ -144,7 +140,6 @@ DATABASES = {
 #         'PORT': '5433',
 #     }
 # }
-DATABASES['default'] = dj_database_url.parse('postgres://wccoflvmklxcdp:309a54ae58b83e671723b8709389c0af84088489b3ec6869f7a9634ea0117ebf@ec2-52-5-229-243.compute-1.amazonaws.com:5432/d94clsij9rpbuo', conn_max_age=600)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -189,6 +184,9 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }
+
+STATIC_URL = '/static/'
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(hours=23),
 }

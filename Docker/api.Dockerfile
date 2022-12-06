@@ -2,7 +2,7 @@
 FROM python:3.9
 
 # set work directory
-WORKDIR /usr/src/
+WORKDIR /usr/src/api
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1

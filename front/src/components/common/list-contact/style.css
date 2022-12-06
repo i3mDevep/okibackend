@@ -1,0 +1,5 @@
+.list__contact__root {
+    max-height: 90vh;
+    overflow: hidden;
+    flex: 4;
+}

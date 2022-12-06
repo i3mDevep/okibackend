@@ -1,0 +1,2 @@
+import ProviderCreateComponent from './ProviderCreateComponent'
+export default ProviderCreateComponent

@@ -20,7 +20,7 @@ services:
       dockerfile: ./Docker/ui.Dockerfile
     command: npm start
     volumes:
-      - './ui/:/usr/src/ui/'
+      - './front/:/usr/src/ui/'
       - '/usr/src/ui/node_modules'
     ports:
       - 3001:3000

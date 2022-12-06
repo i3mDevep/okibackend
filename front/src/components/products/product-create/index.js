@@ -1,0 +1,2 @@
+import ProductCreateComponent from './ProductCreateComponent'
+export default ProductCreateComponent

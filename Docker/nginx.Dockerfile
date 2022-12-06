@@ -4,12 +4,12 @@ WORKDIR /usr/src/ui
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
-COPY ./ui/package*.json ./
+COPY ./front/package*.json ./
 
 RUN npm install
 
 #To bundle your app’s source code inside the Docker image, use the COPY instruction:
-COPY ./ui .
+COPY ./front .
 #RUN CI=true npm test
 RUN npm run build
 

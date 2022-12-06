@@ -1,0 +1,2 @@
+import ProviderFormCreateContainer from './ProviderCreate'
+export default ProviderFormCreateContainer

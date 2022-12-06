@@ -1,0 +1,62 @@
+import { listFields } from "../../../common/templeate-forms/list-fields";
+
+export const form = [
+  {
+    grid: { xs: 12, sm: 6 },
+    component: listFields["selectField"],
+    controller: {
+      defaultValue: "",
+      name: "selector",
+      rules: {
+        required: "Required",
+      },
+    },
+    field: {
+      select: true,
+      label: "ESTO ES UNA SELECTOR",
+      fullWidth: true,
+      SelectProps: {
+        native: true,
+      },
+      helperText: "porfavor seleccioname",
+      options: [{ label: "puto", value: 1 }],
+    },
+  },
+  {
+    grid: { xs: 12, sm: 6 },
+    component: listFields["textField"],
+    children: <h1>michael</h1>,
+    controller: {
+      name: "michael",
+      defaultValue: "",
+      rules: {
+        required: "Required",
+      },
+    },
+    field: {
+      required: true,
+      label: "esto es un puto test",
+      fullWidth: true,
+      autoComplete: "michael",
+    },
+  },
+  {
+    grid: { xs: 12, sm: 6 },
+    component: listFields["numberFormart"],
+    controller: {
+      fullWidth: true,
+      name: "numero perro",
+      label: "ingresa platica",
+      defaultValue: "",
+      required: true,
+      rules: {
+        required: "Required",
+      },
+    },
+    field: {
+      customInput: listFields["textField"],
+      thousandSeparator: true,
+      prefix: "$ ",
+    },
+  },
+];
